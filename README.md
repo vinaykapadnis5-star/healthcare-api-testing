@@ -1,15 +1,21 @@
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
-# Healthcare Management System Testing
+public class HealthcareAPITest {
 
-Tools Used:
-- REST Assured
-- Java
-- API Testing
+    public static void main(String[] args) {
 
-Test Scenario:
-1. Send GET Request
-2. Verify Status Code
-3. Validate API Response
+        Response response = RestAssured
+                .given()
+                .when()
+                .get("https://jsonplaceholder.typicode.com/users/1");
 
-Author:
-Vinay Kapadnis
+        System.out.println("Status Code: " + response.getStatusCode());
+
+        if(response.getStatusCode() == 200) {
+            System.out.println("API Test Passed");
+        } else {
+            System.out.println("API Test Failed");
+        }
+    }
+}
